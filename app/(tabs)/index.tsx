@@ -475,6 +475,16 @@ export default function DashboardScreen() {
                 <MaterialCommunityIcons name="account-alert" size={22} color={Colors.error} />
                 <Text style={styles.actionText}>Party Whip</Text>
               </Pressable>
+              <Pressable onPress={() => router.push('/riding-management')} style={({ pressed }) => [styles.actionBtn, pressed && { opacity: 0.8 }]}>
+                <MaterialCommunityIcons name="map-marker-multiple" size={22} color={Colors.info} />
+                <Text style={styles.actionText}>Riding Mgmt</Text>
+              </Pressable>
+              {!gameState.isMajority || gameState.isGoverning ? (
+                <Pressable onPress={() => router.push('/coalition-negotiation')} style={({ pressed }) => [styles.actionBtn, !gameState.isMajority && gameState.isGoverning ? styles.actionBtnGold : {}, pressed && { opacity: 0.8 }]}>
+                  <MaterialCommunityIcons name="handshake" size={22} color={!gameState.isMajority && gameState.isGoverning ? Colors.gold : Colors.textSecondary} />
+                  <Text style={[styles.actionText, !gameState.isMajority && gameState.isGoverning && { color: Colors.gold }]}>Coalition</Text>
+                </Pressable>
+              ) : null}
               <Pressable onPress={() => router.push('/standing-committee')} style={({ pressed }) => [styles.actionBtn, pressed && { opacity: 0.8 }]}>
                 <MaterialCommunityIcons name="account-group" size={22} color={Colors.info} />
                 <Text style={styles.actionText}>Committees</Text>
